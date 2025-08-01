@@ -1,0 +1,14 @@
+[
+  {
+      id: 1,
+      title: "Truth About Trucks Gen 3",
+      year: 2014,
+      shortDescription: "Highlighting the 2025 Ford F-150 the interactive kiosk was developed in Unity and launched in over 2000 dealerships in North America",
+      longDescription: "The newest generation of the Truth About Trucks display boasts a large 27\" touch screen that allows customers inside Ford Dealerships around the country interact with the 2015 Ford F-150. With the display a customer may view safety structures under the trucks body, build their own F-150, and learn about the new technologies that go into the truck.",
+      media: {
+          type: 'image',
+          src: 'assets/tat_gen3.jpg',
+          alt: 'A guest using the Truth About Trucks display'
+      }
+  }
+];
