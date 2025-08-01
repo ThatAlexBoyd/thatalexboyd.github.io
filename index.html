@@ -269,18 +269,30 @@
         document.addEventListener('DOMContentLoaded', () => {
             const projectsData = [
             {
-                id: 1,
-                title: "Truth About Trucks Gen 3",
-                year: 2014,
-                shortDescription: "Highlighting the 2025 Ford F-150 the interactive kiosk was developed in Unity and launched in over 2000 dealerships in North America",
-                longDescription: "The newest generation of the Truth About Trucks display boasts a large 27\" touch screen that allows customers inside Ford Dealerships around the country interact with the 2015 Ford F-150. With the display a customer may view safety structures under the trucks body, build their own F-150, and learn about the new technologies that go into the truck.",
+                id: 5,
+                title: "IndyCar Aerodynamics AR",
+                year: 2018,
+                shortDescription: "Developed in collaboration with Unity 3D, Autodesk, and IndyCar for Autodesk University event.",
+                longDescription: "The IndyCar AR experience was available on the show floor at Autodesk University and allowed guests to overlay particle simulations provided by the IndyCar team.",
                 media: {
-                    type: 'image',
-                    src: 'assets/tat_gen3.jpg',
-                    alt: 'A guest using the Truth About Trucks display'
+                    type: 'video',
+                    src: 'https://www.youtube.com/embed/UZQeqzIwVak',
+                    alt: 'Unity technologies video of AR expierence on show floor'
                 }
-            }
-          ];
+            },
+            {
+              id: 6,
+              title: "Truth About Trucks Gen 3",
+              year: 2014,
+              shortDescription: "Highlighting the 2015 Ford F-150 the interactive kiosk was developed in Unity and launched in over 2000 dealerships in North America",
+              longDescription: "The newest generation of the Truth About Trucks display boasts a large 27\" touch screen that allows customers inside Ford Dealerships around the country interact with the 2015 Ford F-150. With the display a customer may view safety structures under the trucks body, build their own F-150, and learn about the new technologies that go into the truck.",
+              media: {
+                  type: 'image',
+                  src: 'assets/tat_gen3.jpg',
+                  alt: 'A guest using the Truth About Trucks display'
+              }
+          }
+        ];
 
             const projectListContainer = document.getElementById('project-list');
             const modal = document.getElementById('project-modal');
@@ -319,17 +331,20 @@
                 
                 modalMedia.innerHTML = '';
                 if (project.media.type === 'image') {
-                    const img = document.createElement('img');
-                    img.src = project.media.src;
-                    img.alt = project.media.alt;
-                    modalMedia.appendChild(img);
-                } else if (project.media.type === 'video') {
-                    const video = document.createElement('video');
-                    video.src = project.media.src;
-                    video.controls = true;
-                    video.poster = project.media.poster || '';
-                    modalMedia.appendChild(video);
-                }
+                const img = document.createElement('img');
+                img.src = project.media.src;
+                img.alt = project.media.alt;
+                modalMedia.appendChild(img);
+            } else if (project.media.type === 'video') {
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${project.media.src.split('/').pop()}`;
+                iframe.width = "100%";
+                iframe.height = "450"; // You can adjust this height as needed
+                iframe.frameborder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
+                modalMedia.appendChild(iframe);
+        }
 
                 modal.classList.add('is-active');
                 document.body.classList.add('body-modal-open');
