@@ -1,41 +1,394 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Boyd | Producer</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="container pt-7">
-          <h1>Alex Boyd / producer</h1>
-          <p>With over 10 years of experience, I have led and built teams with strong communication skills and technical knowledge to deliver applications, website, & interactive experiences.</p>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-            <a href="https://www.linkedin.com/in/alex-boyd-68b43149/" class="btn btn-outline-dark" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"></path>
-                </svg> 
-                Linkedin
-            </a>
+    <style>
+        /* --- General & Base Styles --- */
+        :root {
+            --primary-text: #333;
+            --secondary-text: #666;
+            --background-color: #FAF9F6;
+            --accent-color: #007bff;
+            --border-color: #e0e0e0;
+            --modal-bg: #FAF9F6;
+        }
 
-            <a href="https://github.com/ThatAlexBoyd" class="btn btn-outline-dark" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
-                </svg> 
-                Github
-            </a>
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--primary-text);
+            line-height: 1.6;
+        }
 
+        .body-modal-open {
+            overflow: hidden;
+        }
+
+        /* --- Layout & Main Components --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #111;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.1rem;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .header-light {
+            font-weight: 400;
+            color: var(--secondary-text);
+        }
+
+        /* --- Header Section --- */
+        header p {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .button-group {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--primary-text);
+            background-color: transparent;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #f0ebe5;
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            color: var(--secondary-text);
+        }
+
+        /* --- Projects List Section --- */
+        .project-item {
+            padding: 1.25rem 0;
+            gap: 1rem;
+        }
+
+        /* UPDATED: Reduced top padding on the first project */
+        #project-list .project-item:first-child {
+            padding-top: 0.25rem;
+        }
+
+        .project-title-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .project-info p {
+            margin: 0;
+            padding-top: 0.1rem;
+            color: var(--secondary-text);
+        }
+
+        .project-btn {
+            flex-shrink: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-text);
+            font-size: 0.9rem;
+            line-height: 1;
+            padding: 0;
+            /* UPDATED: Transition only affects transform now */
+            transition: transform 0.2s ease;
+        }
+
+        /* UPDATED: Removed color change on hover */
+        .project-btn:hover {
+            transform: translateX(3px);
+        }
+        
+        /* --- Modal (Fullscreen Takeover) --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .modal.is-active {
+            display: flex;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .close-btn {
+            position: static;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--secondary-text);
+            cursor: pointer;
+            padding: 0 0.5rem;
+            line-height: 1;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+        
+        .close-btn:hover {
+            color: var(--primary-text);
+        }
+
+        .modal-content {
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        #modal-title {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        #modal-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        #modal-media {
+            width: 100%;
+            background-color: #eee;
+        }
+
+        #modal-media img,
+        #modal-media video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Alex Boyd <span class="header-light">/ producer</span></h1>
+            <p>with 10 years experience.</p>
+            <div class="button-group">
+                <a href="#" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </header>
+
+        <main>
+            <h2>Projects</h2>
+            <div id="project-list">
+                <!-- Projects will be dynamically inserted here by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- The Modal / Fullscreen Takeover -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button id="close-modal-btn" class="close-btn" aria-label="Close project details">×</button>
+            </div>
+            <p id="modal-description"></p>
+            <div id="modal-media"></div>
         </div>
-      </div>
+    </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectsData = [
+                {
+                    id: 1,
+                    title: "ECHOES OF TOMORROW",
+                    year: 2023,
+                    shortDescription: "A sci-fi short film about memory and loss.",
+                    longDescription: "Echoes of Tomorrow is a compelling science fiction short that explores the ethical dilemmas of artificial memory implantation. Produced on a modest budget, the film was praised for its strong narrative, atmospheric cinematography, and powerful performances. It was selected for several international film festivals.",
+                    media: {
+                        type: 'image',
+                        src: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?q=80&w=1470&auto=format&fit=crop',
+                        alt: 'A still of a futuristic cityscape from Echoes of Tomorrow'
+                    }
+                },
+                {
+                    id: 2,
+                    title: "THE ARTISAN'S BENCH",
+                    year: 2022,
+                    shortDescription: "Documentary series on modern craftspeople.",
+                    longDescription: "This documentary series, produced for a streaming platform, profiles four artisans who are keeping traditional crafts alive in the digital age. From a luthier to a glassblower, each episode is an intimate portrait of dedication and skill. The series was noted for its beautiful visual style and respectful storytelling.",
+                    media: {
+                        type: 'video',
+                        src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                        poster: 'https://images.unsplash.com/photo-1595169374246-11084a8c9e58?q=80&w=1374&auto=format&fit=crop'
+                    }
+                },
+                {
+                    id: 3,
+                    title: "STARTUP GRIND",
+                    year: 2021,
+                    shortDescription: "Branded content for a leading tech company.",
+                    longDescription: "Produced for a major tech client, this branded content piece showcases the fast-paced and collaborative environment of their startup incubator program. The goal was to create an energetic and authentic video to attract top talent. The project involved coordinating with multiple stakeholders and capturing candid moments over several weeks.",
+                    media: {
+                        type: 'image',
+                        src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1374&auto=format&fit=crop',
+                        alt: 'Team collaborating in a modern office for Startup Grind'
+                    }
+                }
+            ];
+
+            const projectListContainer = document.getElementById('project-list');
+            const modal = document.getElementById('project-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalMedia = document.getElementById('modal-media');
+
+            function renderProjects() {
+                projectListContainer.innerHTML = '';
+                projectsData.forEach(project => {
+                    const projectElement = document.createElement('div');
+                    projectElement.className = 'project-item';
+                    
+                    projectElement.innerHTML = `
+                        <div class="project-info">
+                            <div class="project-title-wrapper">
+                                <h3>${project.title} <span class="header-light">/ ${project.year}</span></h3>
+                                <button class="project-btn" data-id="${project.id}" aria-label="View details for ${project.title}">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <p>${project.shortDescription}</p>
+                        </div>
+                    `;
+                    projectListContainer.appendChild(projectElement);
+                });
+            }
+
+            function openModal(projectId) {
+                const project = projectsData.find(p => p.id === projectId);
+                if (!project) return;
+
+                modalTitle.innerHTML = `${project.title} <span class="header-light">/ ${project.year}</span>`;
+                modalDescription.textContent = project.longDescription;
+                
+                modalMedia.innerHTML = '';
+                if (project.media.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = project.media.src;
+                    img.alt = project.media.alt;
+                    modalMedia.appendChild(img);
+                } else if (project.media.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = project.media.src;
+                    video.controls = true;
+                    video.poster = project.media.poster || '';
+                    modalMedia.appendChild(video);
+                }
+
+                modal.classList.add('is-active');
+                document.body.classList.add('body-modal-open');
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-active');
+                document.body.classList.remove('body-modal-open');
+            }
+
+            projectListContainer.addEventListener('click', (event) => {
+                const button = event.target.closest('.project-btn');
+                if (button) {
+                    const projectId = parseInt(button.dataset.id, 10);
+                    openModal(projectId);
+                }
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('is-active')) {
+                    closeModal();
+                }
+            });
+            
+            renderProjects();
+        });
+    </script>
+
+</body>
 </html>
