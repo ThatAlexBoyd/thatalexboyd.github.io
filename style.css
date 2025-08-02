@@ -34,7 +34,7 @@
         }
 
         h2 {
-            font-size: 1rem;
+            font-size: 1.15rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.5rem;
             margin-top: 2.5rem;
@@ -48,7 +48,7 @@
 
         /* --- Header --- */
         header p {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: var(--secondary-text);
             margin-top: 0;
             margin-bottom: 1rem;
