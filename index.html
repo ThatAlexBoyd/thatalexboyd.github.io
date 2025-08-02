@@ -238,15 +238,15 @@
     <div class="container">
         <header>
             <h1>Alex Boyd <span class="header-light">/ producer</span></h1>
-            <p>with 10 years experience.</p>
+            <p>With over 10 years of experience, I have led and built teams with strong communication skills and technical knowledge to deliver applications, website, & interactive experiences.</p>
             <div class="button-group">
-                <a href="#" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="#" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/alex-boyd-68b43149" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/ThatAlexBoyd" class="btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </header>
 
         <main>
-            <h2>Projects</h2>
+            <h2>Past work</h2>
             <div id="project-list">
                 <!-- Projects will be dynamically inserted here by JavaScript -->
             </div>
@@ -269,21 +269,45 @@
         document.addEventListener('DOMContentLoaded', () => {
             const projectsData = [
             {
+                id: 2,
+                title: "Truth About Trucks Gen 4",
+                role: "project manager & developer",
+                shortDescription: "The 4th Generation of the Truth About Trucks display launched in dealerships with even greater tools to educate customers and salespeople alike.",
+                longDescription: "The 4th Generation of the Truth About Trucks display launched in dealerships with even greater tools to educate customers and salespeople alike. Not only can users view F-Series trucks interiors, exteriors, and power train components using the Unity Engine HDRP pipeline, they can also use all new tools to shop. These tools include dealership inventory lookup, truck capability tools by VIN, and a full product configurator.",
+                media: {
+                    type: 'video',
+                    src: 'https://www.youtube.com/embed/CTYLZF6lXxQ',
+                    alt: 'Unity technologies video of AR expierence on show floor'
+                }
+            },
+            {
+                id: 3,
+                title: "Ford GT Configurator",
+                role: "project manager",
+                shortDescription: "Realtime 3D configurator for customers to design their Ford GT supercar.",
+                longDescription: "The Ford GT configurator was built in Unity and deployed using Furioos allowed customers to design their Ford GT before ordering. The tool was connected to a customer management system that allowed a concierge to review their designs before construction would begin.",
+                media: {
+                    type: 'video',
+                    src: 'https://www.youtube.com/embed/JRaT-uO9rk4',
+                    alt: 'Unity technologies video of AR expierence on show floor'
+                }
+            },
+            {
                 id: 4,
-                title: "GFS Thrive Coffe VR Expereince",
-                year: 2018,
+                title: "GFS Thrive Coffee VR Expereince",
+                role: "developer & host",
                 shortDescription: "The VR expereince built for the Gordon Food Services trade show allowed guests watch a 360 degree video on how Thrive Coffee is sourced.",
                 longDescription: "The expereince was built using Unity to network 5 headsets to run simultaneously giving the guests a shared expereince. ",
                 media: {
                     type: 'video',
                     src: 'https://www.youtube.com/embed/IWwR1KyWQT4',
-                    alt: 'Unity technologies video of AR expierence on show floor'
+                    alt: 'Gordon Food Services CEO talking about the tradeshow expereince'
                 }
             },
             {
                 id: 5,
                 title: "IndyCar Aerodynamics AR",
-                year: 2018,
+                role: "project manager",
                 shortDescription: "Developed in collaboration with Unity 3D, Autodesk, and IndyCar for Autodesk University event.",
                 longDescription: "The IndyCar AR experience was available on the show floor at Autodesk University and allowed guests to overlay particle simulations provided by the IndyCar team.",
                 media: {
@@ -295,7 +319,7 @@
             {
               id: 6,
               title: "Truth About Trucks Gen 3",
-              year: 2014,
+              role: "developer",
               shortDescription: "Highlighting the 2015 Ford F-150 the interactive kiosk was developed in Unity and launched in over 2000 dealerships in North America",
               longDescription: "The newest generation of the Truth About Trucks display boasts a large 27\" touch screen that allows customers inside Ford Dealerships around the country interact with the 2015 Ford F-150. With the display a customer may view safety structures under the trucks body, build their own F-150, and learn about the new technologies that go into the truck.",
               media: {
@@ -322,7 +346,7 @@
                     projectElement.innerHTML = `
                         <div class="project-info">
                             <div class="project-title-wrapper">
-                                <h3>${project.title} <span class="header-light">/ ${project.year}</span></h3>
+                                <h3>${project.title} <span class="header-light">/ ${project.role}</span></h3>
                                 <button class="project-btn" data-id="${project.id}" aria-label="View details for ${project.title}">
                                     <i class="fas fa-chevron-right"></i>
                                 </button>
@@ -338,7 +362,7 @@
                 const project = projectsData.find(p => p.id === projectId);
                 if (!project) return;
 
-                modalTitle.innerHTML = `${project.title} <span class="header-light">/ ${project.year}</span>`;
+                modalTitle.innerHTML = `${project.title} <span class="header-light">/ ${project.role}</span>`;
                 modalDescription.textContent = project.longDescription;
                 
                 modalMedia.innerHTML = '';
