@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Boyd | Producer</title>
 
-    <!-- Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -109,7 +107,6 @@
             gap: 1rem;
         }
 
-        /* UPDATED: Reduced top padding on the first project */
         #project-list .project-item:first-child {
             padding-top: 0.25rem;
         }
@@ -142,11 +139,9 @@
             font-size: 0.9rem;
             line-height: 1;
             padding: 0;
-            /* UPDATED: Transition only affects transform now */
             transition: transform 0.2s ease;
         }
 
-        /* UPDATED: Removed color change on hover */
         .project-btn:hover {
             transform: translateX(3px);
         }
@@ -174,20 +169,20 @@
         
         .modal-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* MODIFIED: Aligns items to the left */
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0; /* MODIFIED: Removed bottom margin */
         }
         
         .close-btn {
-            position: static;
+            /* MODIFIED: Removed absolute positioning to flow in the header */
             background: none;
             border: none;
             font-size: 2rem;
             color: var(--secondary-text);
             cursor: pointer;
-            padding: 0 0.5rem;
+            padding: 0;
             line-height: 1;
             font-weight: 400;
             transition: color 0.2s ease;
@@ -198,19 +193,31 @@
         }
 
         .modal-content {
+            position: relative;
             max-width: 800px;
             width: 100%;
             animation: fadeIn 0.3s ease-out;
+            padding-top: 3rem;
         }
         
         #modal-title {
             font-size: 1.8rem;
             margin: 0;
         }
+
+        /* ADDED: New style for the project role */
+        #modal-role {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--secondary-text);
+            margin-top: 0.1rem;
+            margin-bottom: 1.5rem;
+        }
         
         #modal-description {
             font-size: 1rem;
             line-height: 1.7;
+            margin-top: 0; /* MODIFIED: Ensure no extra top margin */
             margin-bottom: 2rem;
         }
         
@@ -248,18 +255,18 @@
         <main>
             <h2>Past work</h2>
             <div id="project-list">
-                <!-- Projects will be dynamically inserted here by JavaScript -->
-            </div>
+                </div>
         </main>
     </div>
 
-    <!-- The Modal / Fullscreen Takeover -->
+    <!-- MODIFIED: HTML structure for the modal -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modal-title"></h2>
                 <button id="close-modal-btn" class="close-btn" aria-label="Close project details">×</button>
+                <h2 id="modal-title"></h2>
             </div>
+            <p id="modal-role"></p>
             <p id="modal-description"></p>
             <div id="modal-media"></div>
         </div>
@@ -334,6 +341,7 @@
             const modal = document.getElementById('project-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const modalTitle = document.getElementById('modal-title');
+            const modalRole = document.getElementById('modal-role'); // ADDED: Selector for role element
             const modalDescription = document.getElementById('modal-description');
             const modalMedia = document.getElementById('modal-media');
 
@@ -362,25 +370,27 @@
                 const project = projectsData.find(p => p.id === projectId);
                 if (!project) return;
 
-                modalTitle.innerHTML = `${project.title} <span class="header-light">/ ${project.role}</span>`;
+                // MODIFIED: Populate title and role separately
+                modalTitle.textContent = project.title;
+                modalRole.textContent = project.role;
                 modalDescription.textContent = project.longDescription;
                 
                 modalMedia.innerHTML = '';
                 if (project.media.type === 'image') {
-                const img = document.createElement('img');
-                img.src = project.media.src;
-                img.alt = project.media.alt;
-                modalMedia.appendChild(img);
-            } else if (project.media.type === 'video') {
-                const iframe = document.createElement('iframe');
-                iframe.src = `https://www.youtube.com/embed/${project.media.src.split('/').pop()}`;
-                iframe.width = "100%";
-                iframe.height = "450"; // You can adjust this height as needed
-                iframe.frameborder = "0";
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-                iframe.allowFullscreen = true;
-                modalMedia.appendChild(iframe);
-        }
+                    const img = document.createElement('img');
+                    img.src = project.media.src;
+                    img.alt = project.media.alt;
+                    modalMedia.appendChild(img);
+                } else if (project.media.type === 'video') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://www.youtube.com/embed/${project.media.src.split('/').pop()}`;
+                    iframe.width = "100%";
+                    iframe.height = "450"; // You can adjust this height as needed
+                    iframe.frameborder = "0";
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                    iframe.allowFullscreen = true;
+                    modalMedia.appendChild(iframe);
+                }
 
                 modal.classList.add('is-active');
                 document.body.classList.add('body-modal-open');
