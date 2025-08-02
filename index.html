@@ -10,234 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 
     <style>
-        /* --- General & Base Styles --- */
-        :root {
-            --primary-text: #333;
-            --secondary-text: #666;
-            --background-color: #FAF9F6;
-            --accent-color: #007bff;
-            --border-color: #e0e0e0;
-            --modal-bg: #FAF9F6;
-        }
 
-        body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            margin: 0;
-            background-color: var(--background-color);
-            color: var(--primary-text);
-            line-height: 1.6;
-        }
-
-        .body-modal-open {
-            overflow: hidden;
-        }
-
-        /* --- Layout & Main Components --- */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
-
-        h1, h2, h3 {
-            font-weight: 700;
-            color: #111;
-        }
-
-        h1 {
-            font-size: 2.25rem;
-            margin-bottom: 0.1rem;
-            border-bottom: none;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-top: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .header-light {
-            font-weight: 400;
-            color: var(--secondary-text);
-        }
-
-        /* --- Header Section --- */
-        header p {
-            font-size: 1rem;
-            color: var(--secondary-text);
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-
-        .button-group {
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            text-decoration: none;
-            color: var(--primary-text);
-            background-color: transparent;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .btn:hover {
-            background-color: #f0ebe5;
-            transform: translateY(-2px);
-        }
-
-        .btn i {
-            color: var(--secondary-text);
-        }
-
-        /* --- Projects List Section --- */
-        .project-item {
-            padding: 1.25rem 0;
-            gap: 1rem;
-        }
-
-        #project-list .project-item:first-child {
-            padding-top: 0.25rem;
-        }
-
-        .project-title-wrapper {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .project-info h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .project-info p {
-            margin: 0;
-            padding-top: 0.1rem;
-            color: var(--secondary-text);
-        }
-
-        .project-btn {
-            flex-shrink: 0;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--primary-text);
-            font-size: 0.9rem;
-            line-height: 1;
-            padding: 0;
-            transition: transform 0.2s ease;
-        }
-
-        .project-btn:hover {
-            transform: translateX(3px);
-        }
-        
-        /* --- Modal (Fullscreen Takeover) --- */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--modal-bg);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-
-        .modal.is-active {
-            display: flex;
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: flex-start; /* MODIFIED: Aligns items to the left */
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0; /* MODIFIED: Removed bottom margin */
-        }
-        
-        .close-btn {
-            /* MODIFIED: Removed absolute positioning to flow in the header */
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--secondary-text);
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            font-weight: 400;
-            transition: color 0.2s ease;
-        }
-        
-        .close-btn:hover {
-            color: var(--primary-text);
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 800px;
-            width: 100%;
-            animation: fadeIn 0.3s ease-out;
-            padding-top: 3rem;
-        }
-        
-        #modal-title {
-            font-size: 1.8rem;
-            margin: 0;
-        }
-
-        /* ADDED: New style for the project role */
-        #modal-role {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--secondary-text);
-            margin-top: 0.1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        #modal-description {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-top: 0; /* MODIFIED: Ensure no extra top margin */
-            margin-bottom: 2rem;
-        }
-        
-        #modal-media {
-            width: 100%;
-            background-color: #eee;
-        }
-
-        #modal-media img,
-        #modal-media video {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 4px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
@@ -255,95 +31,42 @@
         <main>
             <h2>Past work</h2>
             <div id="project-list">
-                </div>
-        </main>
-    </div>
-
-    <!-- MODIFIED: HTML structure for the modal -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button id="close-modal-btn" class="close-btn" aria-label="Close project details">×</button>
-                <h2 id="modal-title"></h2>
+                <!-- make project list here -->
             </div>
-            <p id="modal-role"></p>
-            <p id="modal-description"></p>
-            <div id="modal-media"></div>
-        </div>
+        </main>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const projectsData = [
-            {
-                id: 2,
-                title: "Truth About Trucks Gen 4",
-                role: "project manager & developer",
-                shortDescription: "The 4th Generation of the Truth About Trucks display launched in dealerships with even greater tools to educate customers and salespeople alike.",
-                longDescription: "The 4th Generation of the Truth About Trucks display launched in dealerships with even greater tools to educate customers and salespeople alike. Not only can users view F-Series trucks interiors, exteriors, and power train components using the Unity Engine HDRP pipeline, they can also use all new tools to shop. These tools include dealership inventory lookup, truck capability tools by VIN, and a full product configurator.",
-                media: {
-                    type: 'video',
-                    src: 'https://www.youtube.com/embed/CTYLZF6lXxQ',
-                    alt: 'Unity technologies video of AR expierence on show floor'
+                {
+                    title: "Truth About Trucks Gen 4",
+                    role: "project manager & developer",
+                    link: "https://www.youtube.com/watch?v=CTYLZF6lXxQ"
+                },
+                {
+                    title: "Ford GT Configurator",
+                    role: "project manager",
+                    link: "https://www.youtube.com/watch?v=JRaT-uO9rk4"
+                },
+                {
+                    title: "GFS Thrive Coffee VR Expereince",
+                    role: "developer & host",
+                    link: "https://www.youtube.com/watch?v=IWwR1KyWQT4"
+                },
+                {
+                    title: "IndyCar Aerodynamics AR",
+                    role: "project manager",
+                    link: "https://www.youtube.com/watch?v=UZQeqzIwVak"
+                },
+                {
+                    title: "Truth About Trucks Gen 3",
+                    role: "developer",
+                    link: null
                 }
-            },
-            {
-                id: 3,
-                title: "Ford GT Configurator",
-                role: "project manager",
-                shortDescription: "Realtime 3D configurator for customers to design their Ford GT supercar.",
-                longDescription: "The Ford GT configurator was built in Unity and deployed using Furioos allowed customers to design their Ford GT before ordering. The tool was connected to a customer management system that allowed a concierge to review their designs before construction would begin.",
-                media: {
-                    type: 'video',
-                    src: 'https://www.youtube.com/embed/JRaT-uO9rk4',
-                    alt: 'Unity technologies video of AR expierence on show floor'
-                }
-            },
-            {
-                id: 4,
-                title: "GFS Thrive Coffee VR Expereince",
-                role: "developer & host",
-                shortDescription: "The VR expereince built for the Gordon Food Services trade show allowed guests watch a 360 degree video on how Thrive Coffee is sourced.",
-                longDescription: "The expereince was built using Unity to network 5 headsets to run simultaneously giving the guests a shared expereince. ",
-                media: {
-                    type: 'video',
-                    src: 'https://www.youtube.com/embed/IWwR1KyWQT4',
-                    alt: 'Gordon Food Services CEO talking about the tradeshow expereince'
-                }
-            },
-            {
-                id: 5,
-                title: "IndyCar Aerodynamics AR",
-                role: "project manager",
-                shortDescription: "Developed in collaboration with Unity 3D, Autodesk, and IndyCar for Autodesk University event.",
-                longDescription: "The IndyCar AR experience was available on the show floor at Autodesk University and allowed guests to overlay particle simulations provided by the IndyCar team.",
-                media: {
-                    type: 'video',
-                    src: 'https://www.youtube.com/embed/UZQeqzIwVak',
-                    alt: 'Unity technologies video of AR expierence on show floor'
-                }
-            },
-            {
-              id: 6,
-              title: "Truth About Trucks Gen 3",
-              role: "developer",
-              shortDescription: "Highlighting the 2015 Ford F-150 the interactive kiosk was developed in Unity and launched in over 2000 dealerships in North America",
-              longDescription: "The newest generation of the Truth About Trucks display boasts a large 27\" touch screen that allows customers inside Ford Dealerships around the country interact with the 2015 Ford F-150. With the display a customer may view safety structures under the trucks body, build their own F-150, and learn about the new technologies that go into the truck.",
-              media: {
-                  type: 'image',
-                  src: 'assets/tat_gen3.jpg',
-                  alt: 'A guest using the Truth About Trucks display'
-              }
-          }
-        ];
+            ];
 
             const projectListContainer = document.getElementById('project-list');
-            const modal = document.getElementById('project-modal');
-            const closeModalBtn = document.getElementById('close-modal-btn');
-            const modalTitle = document.getElementById('modal-title');
-            const modalRole = document.getElementById('modal-role'); // ADDED: Selector for role element
-            const modalDescription = document.getElementById('modal-description');
-            const modalMedia = document.getElementById('modal-media');
 
             function renderProjects() {
                 projectListContainer.innerHTML = '';
@@ -351,77 +74,21 @@
                     const projectElement = document.createElement('div');
                     projectElement.className = 'project-item';
                     
+                    const titleHtml = project.link
+                        ? `<a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">${project.title}</a>`
+                        : `<span>${project.title}</span>`;
+
                     projectElement.innerHTML = `
                         <div class="project-info">
-                            <div class="project-title-wrapper">
-                                <h3>${project.title} <span class="header-light">/ ${project.role}</span></h3>
-                                <button class="project-btn" data-id="${project.id}" aria-label="View details for ${project.title}">
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                            <p>${project.shortDescription}</p>
+                            <h3>
+                                ${titleHtml}
+                                <span class="header-light">/ ${project.role}</span>
+                            </h3>
                         </div>
                     `;
                     projectListContainer.appendChild(projectElement);
                 });
             }
-
-            function openModal(projectId) {
-                const project = projectsData.find(p => p.id === projectId);
-                if (!project) return;
-
-                // MODIFIED: Populate title and role separately
-                modalTitle.textContent = project.title;
-                modalRole.textContent = project.role;
-                modalDescription.textContent = project.longDescription;
-                
-                modalMedia.innerHTML = '';
-                if (project.media.type === 'image') {
-                    const img = document.createElement('img');
-                    img.src = project.media.src;
-                    img.alt = project.media.alt;
-                    modalMedia.appendChild(img);
-                } else if (project.media.type === 'video') {
-                    const iframe = document.createElement('iframe');
-                    iframe.src = `https://www.youtube.com/embed/${project.media.src.split('/').pop()}`;
-                    iframe.width = "100%";
-                    iframe.height = "450"; // You can adjust this height as needed
-                    iframe.frameborder = "0";
-                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-                    iframe.allowFullscreen = true;
-                    modalMedia.appendChild(iframe);
-                }
-
-                modal.classList.add('is-active');
-                document.body.classList.add('body-modal-open');
-            }
-
-            function closeModal() {
-                modal.classList.remove('is-active');
-                document.body.classList.remove('body-modal-open');
-            }
-
-            projectListContainer.addEventListener('click', (event) => {
-                const button = event.target.closest('.project-btn');
-                if (button) {
-                    const projectId = parseInt(button.dataset.id, 10);
-                    openModal(projectId);
-                }
-            });
-
-            closeModalBtn.addEventListener('click', closeModal);
-
-            modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
-
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.classList.contains('is-active')) {
-                    closeModal();
-                }
-            });
             
             renderProjects();
         });

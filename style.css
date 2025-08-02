@@ -1,0 +1,116 @@
+        /* --- General & Base Styles --- */
+        :root {
+            --primary-text: #333;
+            --secondary-text: #666;
+            --background-color: #FAF9F6;
+            --accent-color: #007bff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--primary-text);
+            line-height: 1.6;
+        }
+
+        /* --- Layout & Main Components --- */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #111;
+        }
+
+        h1 {
+            font-size: 1.91rem;
+            margin-bottom: 0.2rem;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.36rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem; 
+        }
+        
+        .header-light {
+            font-weight: 400;
+            color: var(--secondary-text);
+        }
+
+        /* --- Header --- */
+        header p {
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            max-width: 580px; /* ADDED: To make text wrap sooner */
+        }
+
+        .button-group {
+            margin-top: 0.75rem; /* MODIFIED: Reduced from 1rem */
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.2rem 0;
+            text-decoration: none;
+            color: var(--primary-text);
+            background-color: transparent;
+            border: none;
+            transition: color 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            color: var(--accent-color);
+        }
+        
+        .btn:hover i {
+            color: var(--accent-color);
+        }
+
+        .btn i {
+            color: var(--secondary-text);
+            transition: color 0.2s ease;
+        }
+
+        /* --- Projects --- */
+        .project-item {
+            padding: 0.5rem 0;
+        }
+
+        #project-list .project-item:first-child {
+            padding-top: 0.25rem;
+        }
+
+        .project-info h3 {
+            margin: 0;
+            font-size: 0.94rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .project-link {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease; 
+        }
+
+        .project-link:hover {
+            color: var(--accent-color);
+        }
